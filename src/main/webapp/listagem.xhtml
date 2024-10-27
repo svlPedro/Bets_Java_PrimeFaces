@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<h:head><title>Listagem</title></h:head>
+	
+	<h:body>
+		<h:form>
+			<p:messages id="messages" showDetail="false" closable="true"> <p:autoUpdate/> </p:messages> 
+			
+			<p:dataTable id="dt-jogos" value="#{jogoBean.lista}" var="j" selection="#{jogoBean.jogosSelecionados}" rowKey="#{j.id}" selectionMode="multiple">
+			    <p:column headerText="Id"><p:outputLabel value="#{j.id}"/></p:column>
+				<p:column headerText="Nome do Jogador"><p:outputLabel value="#{j.nomeJogador}"/></p:column>
+				<p:column headerText="Número Apostado"><p:outputLabel value="#{j.numeroAposta}"/></p:column>
+				<p:column headerText="Número Secreto"><p:outputLabel value="#{j.numeroSecreto}"/></p:column>
+				<p:column headerText="Resultado"><p:outputLabel value="#{j.resultado}"/></p:column>
+				<p:column headerText="Data"><p:outputLabel value="#{j.dataFormatada}"/></p:column>
+			</p:dataTable>
+		
+			<p:panelGrid columns="5">
+			<p:commandButton value="Excluir jogo Selecionado" icon="pi pi-trash" action="#{jogoBean.excluirSelecionados}" styleClass="ui-button-danger" update="dt-jogos messages"/>
+			
+			<p:commandButton value="Excluir Tudo" icon="pi pi-trash" action="#{jogoBean.excluirTudo}" styleClass="ui-button-danger" update="dt-jogos messages"/>
+			
+			<p:commandButton value="Verificar quantidade de atributos" action="#{jogoBean.quantidadeDeElementos}" update="messages" icon="pi pi-info-circle" />
+			
+			<p:commandButton value="Retornar para a página inicial" action="index" icon="pi pi-home" styleClass="ui-button-primary" />
+			
+			<p:commandButton value="Apresentação" action="about" icon="pi pi-user" styleClass="ui-button-primary" />
+			</p:panelGrid>
+		</h:form>
+	</h:body>
+</html>
